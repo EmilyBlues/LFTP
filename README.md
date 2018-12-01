@@ -25,7 +25,7 @@ Simply setup server.py and wait for connections from clients.
 - [ ] lsend & lget
 - [ ] segment structure
 - [ ] reliable data transfer
-- [ ] flow control (secondary)
+- [ ] flow control
 - [ ] congestion control
 - [ ] multithread support
 - [ ] debug info
