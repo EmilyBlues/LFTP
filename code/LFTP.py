@@ -26,15 +26,22 @@ class segment():
     return self.header.to_string() + delimeter + str(self.data)
 
 class LFTP():
-  def __init__(self):
+  def __init__(self, port = 9000, type = 0):
     # initial data
-    pass
+    self.socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    if type == 0:
+      self.socket.bind(('127.0.0.1', port))
+      print('Server run on 9000...')
+    
+  # data 必须是binary类型数据
+  def rdp_send(self, data, addr = '127.0.0.1', port = 9000):
+    self.socket.sendto(data, (addr, port))
 
-  def rdp_send(self, data):
-    pass
-
-  def rdp_recv(self, filename):
-    pass
+  def rdp_recv(self):
+    while True:
+      # 接收数据:
+      data = self.socket.recvfrom(1024)
+      print('Received from %s:%s.' %data)
 
   def connect(self):
     pass
@@ -47,4 +54,5 @@ class LFTP():
 
   def __del__(self):
     # teardown
+    self.socket.close()
     pass
